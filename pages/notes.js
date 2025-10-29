@@ -7,8 +7,9 @@ export default function Notes() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Fetch notes from the API
-    fetch('/api/notes')
+    // Fetch notes from the API (use absolute path on GitHub Pages)
+    const base = process.env.NEXT_PUBLIC_BASE_PATH || ''
+    fetch(`${base}/api/notes`)
       .then(res => res.json())
       .then(data => {
         setNotes(data)
@@ -46,21 +47,14 @@ export default function Notes() {
         ) : (
           <div className="notes-grid">
             {notes.map((note, index) => (
-              <div key={index} className="note-card">
+              <div className="note-card" key={index}>
                 <div className="note-icon">
                   {note.type === 'pdf' ? '📄' : '📁'}
                 </div>
                 <div className="note-info">
                   <h3>{note.name}</h3>
-                  <p className="note-meta">
-                    Size: {note.size}
-                  </p>
-                  <a 
-                    href={note.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="view-btn"
-                  >
+                  <p className="note-meta">Size: {note.size}</p>
+                  <a href={note.url} target="_blank" rel="noopener noreferrer" className="view-btn">
                     View {note.type === 'pdf' ? 'PDF' : 'File'}
                   </a>
                 </div>
@@ -76,12 +70,10 @@ export default function Notes() {
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           padding: 2rem;
         }
-
         header {
           text-align: center;
           margin-bottom: 3rem;
         }
-
         .back-btn {
           background: rgba(255, 255, 255, 0.2);
           border: 2px solid white;
@@ -93,28 +85,23 @@ export default function Notes() {
           transition: all 0.3s;
           margin-bottom: 2rem;
         }
-
         .back-btn:hover {
           background: rgba(255, 255, 255, 0.3);
           transform: translateY(-2px);
         }
-
         h1 {
           color: white;
           font-size: 3rem;
           margin-bottom: 0.5rem;
         }
-
         .subtitle {
           color: rgba(255, 255, 255, 0.9);
           font-size: 1.2rem;
         }
-
         main {
           max-width: 1200px;
           margin: 0 auto;
         }
-
         .loading, .no-notes {
           text-align: center;
           color: white;
@@ -124,17 +111,14 @@ export default function Notes() {
           border-radius: 20px;
           backdrop-filter: blur(10px);
         }
-
         .no-notes p {
           margin: 1rem 0;
         }
-
         .notes-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
           gap: 2rem;
         }
-
         .note-card {
           background: rgba(255, 255, 255, 0.95);
           border-radius: 20px;
@@ -146,34 +130,22 @@ export default function Notes() {
           align-items: center;
           text-align: center;
         }
-
         .note-card:hover {
           transform: translateY(-5px);
           box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
-
         .note-icon {
           font-size: 4rem;
           margin-bottom: 1rem;
         }
-
-        .note-info {
-          width: 100%;
-        }
-
+        .note-info { width: 100%; }
         .note-info h3 {
           color: #333;
           font-size: 1.3rem;
           margin-bottom: 0.5rem;
           word-break: break-word;
         }
-
-        .note-meta {
-          color: #666;
-          font-size: 0.9rem;
-          margin-bottom: 1rem;
-        }
-
+        .note-meta { color: #666; font-size: 0.9rem; margin-bottom: 1rem; }
         .view-btn {
           display: inline-block;
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -184,20 +156,10 @@ export default function Notes() {
           font-weight: 600;
           transition: all 0.3s;
         }
-
-        .view-btn:hover {
-          transform: scale(1.05);
-          box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
+        .view-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4); }
         @media (max-width: 768px) {
-          h1 {
-            font-size: 2rem;
-          }
-
-          .notes-grid {
-            grid-template-columns: 1fr;
-          }
+          h1 { font-size: 2rem; }
+          .notes-grid { grid-template-columns: 1fr; }
         }
       `}</style>
     </div>
