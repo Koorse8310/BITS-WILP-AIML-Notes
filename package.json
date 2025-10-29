@@ -1,0 +1,22 @@
+{
+  "name": "bits-wilp-aiml-notes",
+  "version": "1.0.0",
+  "description": "BITS Pilani WILP AI/ML MTech Notes - Authorized GitHub users only",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next build && next export"
+  },
+  "dependencies": {
+    "next": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "next-auth": "^4.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "typescript": "^5.0.0"
+  }
+}
